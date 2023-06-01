@@ -1,0 +1,229 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* end of css reset */
+
+.container {
+  max-width: 1000px;
+  margin: 1em auto;
+  border: 1px lightgray solid;
+  padding: 1em;
+}
+
+header {
+  text-align: center;
+}
+
+.input-section-el {
+  margin-top: 3em;
+  background-color: lightgray;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.input-holder-el {
+  margin-top: 2em;
+}
+
+input[type="text"],
+[type="date"],
+[type="submit"],
+select {
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  width: 100%;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* form styling (issue-form) */
+.grid-col-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+}
+
+/* output styling */
+
+.output-section {
+  margin-top: 2em;
+}
+
+.issue-box-el {
+  margin-top: 1em;
+  padding: 1em;
+  background-color: lightyellow;
+}
+
+.issue-box-el h2 {
+  font-size: 1.8rem;
+}
+
+.issue-box-top-info {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.issue-box-status-el {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+
+.deadline-style {
+  border: red solid 1px;
+  padding: 0.5em 1.5em;
+}
+
+.job-status {
+  margin: 2em 0;
+}
+
+.job-status-span {
+  margin: 1em 0;
+  padding: 0.5em 1.5em;
+  background-color: green;
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.job-status-close {
+  background-color: orange;
+}
+
+.priority-box-el {
+  margin: 1em 0;
+  padding: 0.5em 1.5em;
+  background-color: red;
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.assign-el {
+  margin-top: 1em;
+}
+
+.assign-el p {
+  font-size: 1rem;
+}
+
+.button-el {
+  margin-top: 1em;
+}
+
+.button-el button {
+  margin-right: 0.5em;
+}
+
+.close-btn,
+.delete-btn,
+.archive-btn {
+  padding: 0.2em 1.5em;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  transition: 0.4s;
+}
+
+.close-btn:hover,
+.delete-btn:hover,
+.archive-btn:hover {
+  opacity: 0.5;
+  transition: 0.4s;
+}
+
+.close-btn {
+  background-color: black;
+}
+
+.delete-btn {
+  background-color: red;
+}
+
+.archive-btn {
+  background-color: blue;
+}
+
+.remove {
+  display: none;
+}
