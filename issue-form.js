@@ -54,7 +54,7 @@ const issueInsert = `
 
   </div>
   <div>
-    <input type="submit" value="submit" id="submit"></input>
+    <input type="submit" value="submit"></input>
   </div>
 </form>
 `;
