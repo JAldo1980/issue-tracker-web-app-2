@@ -119,111 +119,46 @@ button {
 
 /* output styling */
 
-.output-section {
-  margin-top: 2em;
-}
-
-.issue-box-el {
+.issue-output-box {
   margin-top: 1em;
+  background-color: aliceblue;
   padding: 1em;
-  background-color: lightyellow;
 }
 
-.issue-box-el h2 {
-  font-size: 1.8rem;
-}
-
-.issue-box-top-info {
+.id-date-output-box {
   display: flex;
-  align-items: center;
-  gap: 2em;
-}
-
-.issue-box-status-el {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 1em;
 }
 
-.deadline-style {
-  border: red solid 1px;
-  padding: 0.5em 1.5em;
+.priority-status-box {
+  display: flex;
+  gap: 1em;
 }
 
-.job-status {
-  margin: 2em 0;
+.assigned-assignor-box {
+  display: flex;
+  gap: 1em;
 }
 
-.job-status-span {
-  margin: 1em 0;
-  padding: 0.5em 1.5em;
-  background-color: green;
-  color: white;
-  text-transform: uppercase;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-.job-status-close {
-  background-color: orange;
-}
-
-.priority-box-el {
-  margin: 1em 0;
-  padding: 0.5em 1.5em;
-  background-color: red;
-  color: white;
-  text-transform: uppercase;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-.assign-el {
+.button-container {
   margin-top: 1em;
+  display: flex;
+  gap: 1em;
 }
 
-.assign-el p {
-  font-size: 1rem;
-}
-
-.button-el {
-  margin-top: 1em;
-}
-
-.button-el button {
-  margin-right: 0.5em;
-}
-
-.close-btn,
-.delete-btn,
-.archive-btn {
-  padding: 0.2em 1.5em;
-  border-radius: 5px;
-  color: white;
-  border: none;
-  transition: 0.4s;
-}
-
-.close-btn:hover,
-.delete-btn:hover,
-.archive-btn:hover {
-  opacity: 0.5;
-  transition: 0.4s;
-}
-
-.close-btn {
-  background-color: black;
-}
-
-.delete-btn {
-  background-color: red;
-}
-
-.archive-btn {
-  background-color: blue;
-}
-
-.remove {
+.delete {
   display: none;
+}
+
+.closed {
+  background-color: orange;
+  color: white;
+}
+
+.low {
+  background-color: aqua;
+}
+
+.medium {
+  background-color: orange;
 }

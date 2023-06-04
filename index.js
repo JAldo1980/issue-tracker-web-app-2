@@ -17,8 +17,6 @@ class issueObject {
     this.assigned = assigned;
     this.assignor = assignor;
     this.isClosed = false; // Initialize the state as "open"
-    // additional
-    this.ident = generateRandomID();
   }
 }
 
@@ -43,29 +41,114 @@ form.addEventListener("submit", function (e) {
     alert("Please select a priority");
     return; // Stop form submission
   }
-  // If form validation passes, you can proceed with form submission
+  // If form validation passes, proceed with form submission
+
   // END OF PRIORITY CHECK
   // generate new object
-  const issue = document.getElementById("description").value;
-  const priority = document.getElementById("dropdown").value;
-  const date = document.getElementById("date").value;
-  const assigned = document.getElementById("assigned").value;
-  const assignor = document.getElementById("assignor").value;
+  createNewObject();
+  // render new object to the DOM
+  renderObject();
+  // reset form values upon event listener trigger
+  resetValues();
+});
+
+// Global variables
+let issue;
+let priority;
+let date;
+let assigned;
+let assignor;
+let ident;
+
+// create new object - collect data from form function
+function createNewObject() {
+  // Assign values to the global variables
+  issue = document.getElementById("description").value;
+  priority = document.getElementById("dropdown").value;
+  date = document.getElementById("date").value;
+  assigned = document.getElementById("assigned").value;
+  assignor = document.getElementById("assignor").value;
+  ident = generateRandomID();
 
   const newIssueObject = new issueObject(
     issue,
     priority,
     date,
     assigned,
-    assignor
+    assignor,
+    ident
   );
-
   issueObjectArray.push(newIssueObject);
-});
+}
 
 console.log(issueObjectArray);
 
-// function to generate random ID for TASK
+// renderObjectFunction
+
+function renderObject() {
+  const objectElement = document.createElement("div");
+  objectElement.classList.add("issue-output-box");
+
+  const priorityColors = {
+    low: "lightblue",
+    medium: "orange",
+    high: "red",
+  };
+
+  const priorityColor = priorityColors[priority];
+
+  objectElement.innerHTML = `
+    <div class="id-date-output-box">
+      <div class="id-output">ID: ${ident}</div>
+      <div class="date-output">Due date: ${date}</div>
+    </div>
+    <h2 class="issue-output">${issue}</h2>
+    <div class="priority-status-box">
+      <div class="priority-output" style="background-color: ${priorityColor}">${priority}</div>
+      <div class="status-output">OPEN</div>
+    </div>
+    <div class="assigned-assignor-box">
+      <div class="assigned-output">Assigned to: ${assigned}</div>
+      <div class="assignor-output">Assigned by: ${assignor}</div>
+    </div>
+    <div class="button-container">
+      <button class="close-button">Close</button>
+      <button class="delete-button">Delete</button>
+      <button class="archive-button">Archive</button>
+    </div>
+  `;
+
+  const buttonContainer = objectElement.querySelector(".button-container");
+  buttonContainer.addEventListener("click", function (event) {
+    const button = event.target;
+
+    if (button.classList.contains("close-button")) {
+      document.querySelector(".status-output").innerHTML = "CLOSED";
+      document.querySelector(".close-button").remove();
+      document.querySelector(".status-output").classList.add("closed");
+
+      console.log("Close button clicked for object with ID:", ident);
+    } else if (button.classList.contains("delete-button")) {
+      objectElement.remove();
+    } else if (button.classList.contains("archive-button")) {
+      console.log("Archive button clicked for object with ID:", ident);
+    }
+  });
+
+  document.getElementById("output-section-el").appendChild(objectElement);
+}
+
+// reset values FUNCTION
+
+function resetValues() {
+  issue = document.getElementById("description").value = "";
+  priority = document.getElementById("dropdown").value = "";
+  date = document.getElementById("date").value = "";
+  assigned = document.getElementById("assigned").value = "";
+  assignor = document.getElementById("assignor").value = "";
+}
+
+// function to generate random ID for issue object
 function generateRandomID() {
   let id = "";
   const characters = "0123456789abcdef";
@@ -74,4 +157,14 @@ function generateRandomID() {
     id += characters[Math.floor(Math.random() * characters.length)];
   }
   return id;
+}
+
+function renderStatusChange() {
+  if (priority === "low") {
+    document.querySelector(".priority-output").classList.add(".low");
+  } else if (priority === "medium") {
+    document.querySelector(".priority-output").classList.add(".medium");
+  } else if (priority === "high") {
+    document.querySelector(".priority-output").classList.add(".high");
+  }
 }
