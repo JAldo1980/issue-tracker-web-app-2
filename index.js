@@ -59,6 +59,7 @@ let date;
 let assigned;
 let assignor;
 let ident;
+let isClosed;
 
 // create new object - collect data from form function
 function createNewObject() {
@@ -76,7 +77,8 @@ function createNewObject() {
     date,
     assigned,
     assignor,
-    ident
+    ident,
+    isClosed
   );
   issueObjectArray.push(newIssueObject);
 }
@@ -121,13 +123,27 @@ function renderObject() {
   const buttonContainer = objectElement.querySelector(".button-container");
   buttonContainer.addEventListener("click", function (event) {
     const button = event.target;
-
     if (button.classList.contains("close-button")) {
-      document.querySelector(".status-output").innerHTML = "CLOSED";
-      document.querySelector(".close-button").remove();
-      document.querySelector(".status-output").classList.add("closed");
+      // select the specific objectElement containing the clicked close button
+      const objectElement = button.closest(".issue-output-box");
 
-      console.log("Close button clicked for object with ID:", ident);
+      // Change the innerHTML of the child element
+      const statusOutput = objectElement.querySelector(".status-output");
+      statusOutput.innerHTML = "CLOSED";
+
+      // Adding a class to a child element
+      const closeBtn = objectElement.querySelector(".close-button");
+      closeBtn.classList.add("delete");
+
+      // change close status
+      isClosed = true;
+
+      console.log(
+        "Close button clicked for object with ID:",
+        objectElement.querySelector(".id-output").textContent
+      );
+
+      console.log("closed:", isClosed);
     } else if (button.classList.contains("delete-button")) {
       objectElement.remove();
     } else if (button.classList.contains("archive-button")) {
@@ -159,12 +175,12 @@ function generateRandomID() {
   return id;
 }
 
-function renderStatusChange() {
-  if (priority === "low") {
-    document.querySelector(".priority-output").classList.add(".low");
-  } else if (priority === "medium") {
-    document.querySelector(".priority-output").classList.add(".medium");
-  } else if (priority === "high") {
-    document.querySelector(".priority-output").classList.add(".high");
-  }
-}
+// function renderStatusChange() {
+//   if (priority === "low") {
+//     document.querySelector(".priority-output").classList.add(".low");
+//   } else if (priority === "medium") {
+//     document.querySelector(".priority-output").classList.add(".medium");
+//   } else if (priority === "high") {
+//     document.querySelector(".priority-output").classList.add(".high");
+//   }
+// }
