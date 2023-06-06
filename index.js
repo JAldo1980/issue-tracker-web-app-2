@@ -147,7 +147,7 @@ function renderObject() {
     } else if (button.classList.contains("delete-button")) {
       objectElement.remove();
     } else if (button.classList.contains("archive-button")) {
-      window.localStorage.setItem("object", objectElement);
+      // save object in local storage - note: stringify it, because objects can not be stored in local storage as is.
 
       console.log("Archive button clicked for object with ID:", ident);
     }
