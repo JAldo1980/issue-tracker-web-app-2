@@ -23,6 +23,7 @@ class issueObject {
 // 3. create Array to store the objects
 
 const issueObjectArray = [];
+const closedArray = [];
 
 // event listener for the form
 
@@ -80,7 +81,7 @@ function createNewObject() {
     ident,
     isClosed
   );
-  issueObjectArray.push(newIssueObject);
+  issueObjectArray.unshift(newIssueObject);
 }
 
 console.log(issueObjectArray);
@@ -142,11 +143,12 @@ function renderObject() {
         "Close button clicked for object with ID:",
         objectElement.querySelector(".id-output").textContent
       );
-
       console.log("closed:", isClosed);
     } else if (button.classList.contains("delete-button")) {
       objectElement.remove();
     } else if (button.classList.contains("archive-button")) {
+      window.localStorage.setItem("object", objectElement);
+
       console.log("Archive button clicked for object with ID:", ident);
     }
   });
@@ -174,13 +176,3 @@ function generateRandomID() {
   }
   return id;
 }
-
-// function renderStatusChange() {
-//   if (priority === "low") {
-//     document.querySelector(".priority-output").classList.add(".low");
-//   } else if (priority === "medium") {
-//     document.querySelector(".priority-output").classList.add(".medium");
-//   } else if (priority === "high") {
-//     document.querySelector(".priority-output").classList.add(".high");
-//   }
-// }
